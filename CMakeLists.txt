@@ -97,6 +97,9 @@ target_include_directories(${CMAKE_PROJECT_NAME}
 						   PUBLIC ${CMAKE_SOURCE_DIR}/source
 						   )
 
+# vita-elf-create appends SCE import metadata to the executable segment.
+target_link_options(${CMAKE_PROJECT_NAME} PRIVATE "-Wl,--defsym=__sce_headroom=0x10000")
+
 target_link_libraries(${CMAKE_PROJECT_NAME}
 					  -Wl,--whole-archive pthread -Wl,--no-whole-archive
 					  stdc++
